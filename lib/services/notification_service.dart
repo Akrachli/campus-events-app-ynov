@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 class NotificationService {
   static final NotificationService _instance = NotificationService._internal();
   factory NotificationService() => _instance;
@@ -12,6 +14,8 @@ class NotificationService {
     required String body,
   }) async {
     // Notifications désactivées temporairement
-    print('Notification: $title - $body');
+    if (kDebugMode) {
+      debugPrint('Notification: $title - $body');
+    }
   }
 }
