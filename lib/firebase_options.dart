@@ -28,6 +28,7 @@ class DefaultFirebaseOptions {
     storageBucket: 'campus-events-app-ae5bd.firebasestorage.app',
   );
 
+  // Configuration Android COMPLÈTE - Ne dépend PAS de google-services.json
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBkjIkIb8NjDEBB5UKrflPvZHWu7__8-s4',
     appId: '1:562943686436:android:e19ea5a83ee7f4565fe5b1',
@@ -35,7 +36,6 @@ class DefaultFirebaseOptions {
     projectId: 'campus-events-app-ae5bd',
     authDomain: 'campus-events-app-ae5bd.firebaseapp.com',
     storageBucket: 'campus-events-app-ae5bd.firebasestorage.app',
-    databaseURL: 'https://campus-events-app-ae5bd.firebaseio.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(

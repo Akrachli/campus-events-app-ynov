@@ -47,6 +47,28 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  // FONCTION DE CONNEXION RAPIDE POUR DEMO
+  Future<void> _quickLogin() async {
+    setState(() => _isLoading = true);
+
+    final authService = Provider.of<AuthService>(context, listen: false);
+    final error = await authService.signIn(
+      email: 'test@campus.com',
+      password: 'test123456',
+    );
+
+    setState(() => _isLoading = false);
+
+    if (error != null && mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(error),
+          backgroundColor: Colors.orange,
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +82,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // Logo
                   Icon(
                     Icons.event_available,
                     size: 100,
@@ -68,7 +89,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 16),
                   
-                  // Titre
                   Text(
                     'Campus Events',
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
@@ -86,7 +106,20 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 48),
 
-                  // Email
+                  // BOUTON DEMO - À enlever en production
+                  OutlinedButton.icon(
+                    onPressed: _isLoading ? null : _quickLogin,
+                    icon: const Icon(Icons.flash_on),
+                    label: const Text('🎯 Connexion rapide (DEMO)'),
+                    style: OutlinedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      side: BorderSide(color: Colors.orange.shade300),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  const Divider(),
+                  const SizedBox(height: 16),
+
                   TextFormField(
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
@@ -109,7 +142,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 16),
 
-                  // Password
                   TextFormField(
                     controller: _passwordController,
                     obscureText: _obscurePassword,
@@ -142,7 +174,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 24),
 
-                  // Bouton Login
                   ElevatedButton(
                     onPressed: _isLoading ? null : _login,
                     style: ElevatedButton.styleFrom(
@@ -164,7 +195,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 16),
 
-                  // Lien vers Register
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

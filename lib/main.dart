@@ -12,23 +12,21 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
   try {
-    if (kDebugMode) {
-      print('🚀 Initializing Firebase...');
-    }
-    
+    // Utilise UNIQUEMENT firebase_options.dart - ignore google-services.json
     await Firebase.initializeApp(
+      name: 'campus-events-app',
       options: DefaultFirebaseOptions.currentPlatform,
     );
     
     if (kDebugMode) {
-      print('✅ Firebase initialized successfully!');
+      debugPrint('✅ Firebase initialized successfully!');
     }
   } catch (e, stackTrace) {
     if (kDebugMode) {
-      debugPrint('❌ Firebase initialization error: $e');
+      debugPrint('⚠️ Firebase initialization warning: $e');
       debugPrint('Stack trace: $stackTrace');
     }
-    // Continue même si Firebase échoue pour voir l'UI
+    // Continue quand même - l'app peut quand même démarrer
   }
   
   await NotificationService().initialize();
@@ -85,25 +83,9 @@ class AuthWrapper extends StatelessWidget {
         }
         
         if (snapshot.hasError) {
-          return Scaffold(
-            body: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(Icons.error_outline, size: 64, color: Colors.red),
-                  const SizedBox(height: 16),
-                  Text('Erreur: ${snapshot.error}'),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Force reload
-                    },
-                    child: const Text('Réessayer'),
-                  ),
-                ],
-              ),
-            ),
-          );
+          if (kDebugMode) {
+            debugPrint('Auth error: ${snapshot.error}');
+          }
         }
         
         if (snapshot.hasData) {
