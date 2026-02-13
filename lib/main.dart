@@ -12,13 +12,23 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
   try {
+    if (kDebugMode) {
+      print('🚀 Initializing Firebase...');
+    }
+    
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-  } catch (e) {
+    
     if (kDebugMode) {
-      debugPrint('Firebase initialization error: $e');
+      print('✅ Firebase initialized successfully!');
     }
+  } catch (e, stackTrace) {
+    if (kDebugMode) {
+      debugPrint('❌ Firebase initialization error: $e');
+      debugPrint('Stack trace: $stackTrace');
+    }
+    // Continue même si Firebase échoue pour voir l'UI
   }
   
   await NotificationService().initialize();
@@ -68,6 +78,28 @@ class AuthWrapper extends StatelessWidget {
                   CircularProgressIndicator(),
                   SizedBox(height: 16),
                   Text('Chargement...'),
+                ],
+              ),
+            ),
+          );
+        }
+        
+        if (snapshot.hasError) {
+          return Scaffold(
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.error_outline, size: 64, color: Colors.red),
+                  const SizedBox(height: 16),
+                  Text('Erreur: ${snapshot.error}'),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Force reload
+                    },
+                    child: const Text('Réessayer'),
+                  ),
                 ],
               ),
             ),

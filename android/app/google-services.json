@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "562943686436",
+    "firebase_url": "https://campus-events-app-ae5bd.firebaseio.com",
     "project_id": "campus-events-app-ae5bd",
     "storage_bucket": "campus-events-app-ae5bd.firebasestorage.app"
   },
@@ -12,7 +13,12 @@
           "package_name": "com.example.campus_events_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "562943686436-web.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBkjIkIb8NjDEBB5UKrflPvZHWu7__8-s4"
@@ -20,7 +26,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "562943686436-web.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

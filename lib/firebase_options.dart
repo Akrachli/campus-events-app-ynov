@@ -9,21 +9,12 @@ class DefaultFirebaseOptions {
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
+        if (kDebugMode) {
+          print('🔥 Using Android Firebase configuration');
+        }
         return android;
       case TargetPlatform.iOS:
         return ios;
-      case TargetPlatform.macOS:
-        return macos;
-      case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
-      case TargetPlatform.linux:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for linux - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
       default:
         throw UnsupportedError(
           'DefaultFirebaseOptions are not supported for this platform.',
@@ -40,28 +31,20 @@ class DefaultFirebaseOptions {
     storageBucket: 'campus-events-app-ae5bd.firebasestorage.app',
   );
 
+  // Configuration Android avec TOUTES les informations
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDytNnHOY0iFbUU6lDnYDVHLgmu8-Bb9Gw',
+    apiKey: 'AIzaSyBkjIkIb8NjDEBB5UKrflPvZHWu7__8-s4',
     appId: '1:562943686436:android:e19ea5a83ee7f4565fe5b1',
     messagingSenderId: '562943686436',
     projectId: 'campus-events-app-ae5bd',
     authDomain: 'campus-events-app-ae5bd.firebaseapp.com',
     storageBucket: 'campus-events-app-ae5bd.firebasestorage.app',
+    databaseURL: 'https://campus-events-app-ae5bd.firebaseio.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDytNnHOY0iFbUU6lDnYDVHLgmu8-Bb9Gw',
+    apiKey: 'AIzaSyDytNnHOY0iFbUU6lDnYDVHLgmu7__8-s4',
     appId: '1:562943686436:ios:e19ea5a83ee7f4565fe5b1',
-    messagingSenderId: '562943686436',
-    projectId: 'campus-events-app-ae5bd',
-    authDomain: 'campus-events-app-ae5bd.firebaseapp.com',
-    storageBucket: 'campus-events-app-ae5bd.firebasestorage.app',
-    iosBundleId: 'com.example.campusEventsApp',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDytNnHOY0iFbUU6lDnYDVHLgmu8-Bb9Gw',
-    appId: '1:562943686436:macos:e19ea5a83ee7f4565fe5b1',
     messagingSenderId: '562943686436',
     projectId: 'campus-events-app-ae5bd',
     authDomain: 'campus-events-app-ae5bd.firebaseapp.com',
