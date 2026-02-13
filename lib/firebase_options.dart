@@ -9,9 +9,6 @@ class DefaultFirebaseOptions {
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
-        if (kDebugMode) {
-          print('🔥 Using Android Firebase configuration');
-        }
         return android;
       case TargetPlatform.iOS:
         return ios;
@@ -31,7 +28,6 @@ class DefaultFirebaseOptions {
     storageBucket: 'campus-events-app-ae5bd.firebasestorage.app',
   );
 
-  // Configuration Android avec TOUTES les informations
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBkjIkIb8NjDEBB5UKrflPvZHWu7__8-s4',
     appId: '1:562943686436:android:e19ea5a83ee7f4565fe5b1',
